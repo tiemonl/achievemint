@@ -1,6 +1,6 @@
 'use client'
 import AchievementCard from "@/components/achievement-card/achievement-card";
-import getAchievementData from "@/services/useAchievementData";
+import getAchievementData from "@/services/getAchievementData";
 import {useEffect, useState} from "react";
 import {Achievement} from "@/entities/Achievement";
 import {CircularProgress} from "@mui/material";
