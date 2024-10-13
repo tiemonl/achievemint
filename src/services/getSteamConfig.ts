@@ -2,7 +2,7 @@
 
 import {SteamConfig} from "@/entities/SteamConfig";
 
-export function useSteamConfig(): SteamConfig {
+export function getSteamConfig(): SteamConfig {
     const retVal: SteamConfig = {
         gameId: "GAME_ID",
         userId: "USER_ID",
