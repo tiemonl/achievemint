@@ -1,9 +1,9 @@
 'use client'
-import AchievementCard from "@/components/achievement-card/achievement-card";
 import getAchievementData from "@/services/getAchievementData";
 import {useEffect, useState} from "react";
 import {Achievement} from "@/entities/Achievement";
 import {CircularProgress} from "@mui/material";
+import KanbanBoard from "@/components/kanban/kanban-board/kaban-board";
 
 export default function Home() {
   const [achievements, setAchievements] = useState<Array<Achievement> | null>(null)
@@ -22,9 +22,5 @@ export default function Home() {
     )
   }
 
-  return (
-      <div className="flex flex-wrap justify-around  gap-2">
-        {achievements?.map((item, index) => <AchievementCard key={index} achievement={item}/>) }
-      </div>
-  );
+  return <KanbanBoard achievements={achievements} />
 }
