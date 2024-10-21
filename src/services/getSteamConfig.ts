@@ -1,19 +1,20 @@
 'use client'
 
 import {SteamConfig} from "@/entities/SteamConfig";
+import {useLocalStorage} from "@/hooks/useLocalStorage";
 
 export function getSteamConfig(): SteamConfig {
     const retVal: SteamConfig = {
-        gameId: "GAME_ID",
-        userId: "USER_ID",
-        apiKey: "API_KEY"
+        gameId: "placeholder",
+        userId: "placeholder",
+        apiKey: "placeholder"
     }
 
-    Object.keys(retVal).forEach(
-        key => {
+    Object.keys(retVal).map((key) => useLocalStorage(key)).forEach(
+        ({getValue, setValue, storageKey}) => {
             const configDictionary: Record<string, string> = retVal as unknown as Record<string, string>;
-            configDictionary[key] = window.localStorage.getItem(key) || ''
-            window.localStorage.setItem(key, configDictionary[key])
+            configDictionary[storageKey] = getValue() || '';
+            setValue(configDictionary[storageKey]);
         }
     )
 
