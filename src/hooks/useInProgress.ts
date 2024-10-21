@@ -1,5 +1,6 @@
 import {getSteamConfig} from "@/services/getSteamConfig";
 import {useState} from "react";
+import {useLocalStorage} from "./useLocalStorage";
 
 interface InProgressHook {
     inProgress: Array<string>;
@@ -7,17 +8,6 @@ interface InProgressHook {
     removeFromInProgress: (achievementName: string) => void;
 }
 
-function getLocalStorageValue(game: string): Array<string> {
-    const value = localStorage.getItem(`kanban_${game}`);
-    if (value) {
-        return JSON.parse(value);
-    }
-    return [];
-}
-
-function setLocalStorageValue(game: string, value: Array<string>) {
-    localStorage.setItem(`kanban_${game}`, JSON.stringify(value));
-}
 
 export function useInProgress(): InProgressHook {
     const steamInfo = getSteamConfig();
@@ -25,10 +15,12 @@ export function useInProgress(): InProgressHook {
         throw new Error("Steam Info not found");
     }
 
-    const [inProgressArray, _setInProgress] = useState<Array<string>>(getLocalStorageValue(steamInfo.gameId));
+    const {getValue, setValue} = useLocalStorage(`kanban${steamInfo.gameId}`);
+
+    const [inProgressArray, _setInProgress] = useState<Array<string>>(JSON.parse(getValue() || '[]'));
 
     const setInProgress = (value: Array<string>) => {
-        setLocalStorageValue(steamInfo.gameId, value);
+        setValue(JSON.stringify(value));
         _setInProgress(value);
     }
 
