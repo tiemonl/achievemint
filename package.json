@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3471",
-    "build": "next build",
+    "build": "next build --no-lint",
     "prod": "next start -p 3471",
-    "lint": "next lint"
+    "lint": "next lint --max-warnings 0"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",

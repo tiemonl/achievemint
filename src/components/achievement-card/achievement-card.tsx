@@ -1,5 +1,6 @@
 import React from 'react';
 import {Achievement} from "@/entities/Achievement";
+import Image from "next/image";
 
 interface AchievementCardProps {
     achievement: Achievement;
@@ -27,9 +28,11 @@ export default function AchievementCard({ achievement: {unlocked, icon, iconGray
     const backgroundColor = unlocked ? 'bg-green-500' : 'bg-gray-500';
     return (
         <div className={"border-4 flex rounded-md border-blue-400 p-1 " + backgroundColor}>
-            <img className={"w-12 h-12"}
-                 src={unlocked ? icon : iconGray}
-                 alt={"achievement icon"}/>
+            <div className={"relative w-12 h-12"}>
+                <Image fill={true}
+                       src={unlocked ? icon : iconGray}
+                       alt={"achievement icon"}/>
+            </div>
             <div className={"flex-col pb-2 pl-1 grow"}>
                 <h3 className="font-bold">{name}</h3>
                 <p className="text-xs">{description}</p>
