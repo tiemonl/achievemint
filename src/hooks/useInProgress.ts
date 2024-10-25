@@ -15,7 +15,7 @@ export function useInProgress(): InProgressHook {
         throw new Error("Steam Info not found");
     }
 
-    const {getValue, setValue} = useLocalStorage(`kanban${steamInfo.gameId}`);
+    const {getValue, setValue} = useLocalStorage(`kanban_${steamInfo.gameId}`);
 
     const [inProgressArray, _setInProgress] = useState<Array<string>>(JSON.parse(getValue() || '[]'));
 
