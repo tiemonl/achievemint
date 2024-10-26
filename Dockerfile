@@ -1,4 +1,4 @@
-FROM node:18-alpine AS build
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -8,11 +8,8 @@ RUN <<-EOF
   npm install
   npm run build
   npm prune --omit=dev
+  npm cache clean --force
 EOF
-
-FROM node:18-alpine AS final
-COPY --from=build /app /app
-WORKDIR /app
 
 EXPOSE 3471
 ENV PORT=3471
