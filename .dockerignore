@@ -1,0 +1,42 @@
+# Ignore node_modules directory (will be created in the image)
+node_modules
+
+# Ignore logs
+npm-debug.log
+yarn-error.log
+*.log
+
+# Ignore environment variable files
+.env
+.env.local
+.env.development
+.env.production
+
+# Ignore temporary files and directories
+.DS_Store
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Ignore version control files
+.git
+.gitignore
+
+# Ignore documentation and configuration files
+README.md
+Dockerfile
+docker-compose.yml
+
+# Ignore IDE or editor specific files
+.vscode/
+.idea/
+*.swp
+
+# Ignore build artifacts
+dist/
+build/
+coverage/
+
+# Ignore other files that are not needed in the image
+*.md
