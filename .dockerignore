@@ -1,42 +1,37 @@
-# Ignore node_modules directory (will be created in the image)
+# Node.js
 node_modules
-
-# Ignore logs
 npm-debug.log
 yarn-error.log
+yarn.lock
+
+# Next.js
+.next
+out
+.next/cache
 *.log
 
-# Ignore environment variable files
-.env
-.env.local
-.env.development
-.env.production
-
-# Ignore temporary files and directories
-.DS_Store
-*.tmp
-*.temp
-tmp/
-temp/
-
-# Ignore version control files
+# Local development
 .git
 .gitignore
-
-# Ignore documentation and configuration files
-README.md
+.dockerignore
 Dockerfile
-docker-compose.yml
-
-# Ignore IDE or editor specific files
-.vscode/
-.idea/
-*.swp
-
-# Ignore build artifacts
-dist/
-build/
-coverage/
-
-# Ignore other files that are not needed in the image
+.vscode
+README.md
+LICENSE
 *.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env.local
+.env.development
+.env.test
+.env
+.env.production
+
+# Ignore npm log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
