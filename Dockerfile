@@ -14,4 +14,4 @@ EOF
 EXPOSE 3471
 ENV PORT=3471
 
-CMD npm run prod
+ENTRYPOINT ["npm", "run", "prod"]
