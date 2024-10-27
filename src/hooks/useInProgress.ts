@@ -1,4 +1,3 @@
-import {getSteamConfig} from "@/services/getSteamConfig";
 import {useState} from "react";
 import {useLocalStorage} from "./useLocalStorage";
 
@@ -9,13 +8,12 @@ interface InProgressHook {
 }
 
 
-export function useInProgress(): InProgressHook {
-    const steamInfo = getSteamConfig();
-    if (!steamInfo?.gameId) {
-        throw new Error("Steam Info not found");
+export function useInProgress(gameId: string): InProgressHook {
+    if (!gameId) {
+        throw new Error("I need a game id!");
     }
 
-    const {getValue, setValue} = useLocalStorage(`kanban_${steamInfo.gameId}`);
+    const {getValue, setValue} = useLocalStorage(`kanban_${gameId}`);
 
     const [inProgressArray, _setInProgress] = useState<Array<string>>(JSON.parse(getValue() || '[]'));
 
