@@ -2,11 +2,11 @@ import {Achievement} from "@/entities/Achievement";
 import {SteamConfig} from "@/entities/SteamConfig";
 import {getSteamConfig} from "@/services/getSteamConfig";
 
-export default async function getAchievementData(): Promise<Array<Achievement>> {
+export default async function getAchievementData(args: {appId: string}): Promise<Array<Achievement>> {
     const query: SteamConfig = getSteamConfig();
-    const resp = await (await fetch(`/api/achievementData?appid=${query.gameId}&steamid=${query.userId}&key=${query.apiKey}&l=en_us`)).json()
+    const resp = await (await fetch(`/api/achievementData?appid=${args.appId}&steamid=${query.userId}&key=${query.apiKey}&l=en_us`)).json()
 
-    return resp.response1.playerstats.achievements.map((entry: {
+    return (resp.response1.playerstats.achievements || []).map((entry: {
         apiname: string,
         name: string,
         description: string,

@@ -5,7 +5,6 @@ import {useLocalStorage} from "@/hooks/useLocalStorage";
 
 export function getSteamConfig(): SteamConfig {
     const retVal: SteamConfig = {
-        gameId: "placeholder",
         userId: "placeholder",
         apiKey: "placeholder"
     }

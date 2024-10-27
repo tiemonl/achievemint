@@ -6,7 +6,7 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'steamcdn-a.akamaihd.net',
-                pathname: '/steamcommunity/**',
+                pathname: '/steam*/**',
             },
         ],
     },

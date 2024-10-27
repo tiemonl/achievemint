@@ -12,12 +12,12 @@ enum SectionKey {
     LOCKED = "locked", IN_PROGRESS = "inprogress", UNLOCKED = "unlocked"
 }
 
-export default function KanbanBoard({achievements}: { achievements: Achievement[] }): React.ReactElement {
+export default function KanbanBoard({achievements, gameId}: { achievements: Achievement[], gameId: string }): React.ReactElement {
     const locked: Array<Achievement> = []
     const unlocked: Array<Achievement> = []
     const inProgressAchievements: Array<Achievement> = []
 
-    const {inProgress, removeFromInProgress, addToInProgress} = useInProgress();
+    const {inProgress, removeFromInProgress, addToInProgress} = useInProgress(gameId);
     const [activeAchievementDrag, setActiveAchievementDrag] = useState<Achievement | null>(null);
 
     achievements.forEach((achievement) => {
