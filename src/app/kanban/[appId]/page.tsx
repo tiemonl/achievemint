@@ -5,13 +5,14 @@ import {CircularProgress} from "@mui/material";
 import KanbanBoard from "@/components/kanban/kanban-board/kaban-board";
 import {Achievement} from "@/entities/Achievement";
 import {useRouter} from "next/navigation";
+import {useSession} from "next-auth/react";
 
 export default function KanbanBoardPage(params: {params: { appId: string}}) {
     const [achievements, setAchievements] = useState<Array<Achievement> | null>(null)
     const router = useRouter();
-
+    const session = useSession()
     useEffect(() => {
-        getAchievementData({appId: params.params.appId}).then((resp) => {
+        getAchievementData({appId: params.params.appId}, session).then((resp) => {
             setAchievements(resp);
         }).catch(() => router.push("/"))
     }, [params, router]);

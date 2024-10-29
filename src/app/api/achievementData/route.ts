@@ -1,8 +1,8 @@
 export async function GET(request: Request) {
     const {searchParams} = new URL(request.url);
 
-    const url1 = `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001?${searchParams.toString()}`;
-    const url2 = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?${searchParams.toString()}`;
+    const url1 = `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001?${searchParams.toString()}&key=${process.env.STEAM_SECRET}`;
+    const url2 = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v0002/?${searchParams.toString()}&key=${process.env.STEAM_SECRET}`;
 
     try {
         const [response1, response2] = await Promise.all([
