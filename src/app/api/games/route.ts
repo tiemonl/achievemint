@@ -2,7 +2,7 @@ import {Game} from "@/entities/Game";
 
 export async function GET(request: Request) {
     const {searchParams} = new URL(request.url);
-    const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?${searchParams.toString()}&include_appinfo=true`
+    const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?${searchParams.toString()}&key=${process.env.STEAM_SECRET}&include_appinfo=true`
     const resultFromSteam = await fetch(url, {
         headers: {
             'Accept': 'application/json',

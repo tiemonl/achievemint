@@ -1,8 +1,8 @@
 import {Game} from "@/entities/Game";
-import {getSteamConfig} from "@/services/getSteamConfig";
+import {SessionContextValue} from "next-auth/react";
 
-export default async function getGames(): Promise<Array<Game>> {
-    const steamInfo = getSteamConfig();
-    const response = await fetch(`/api/games?&steamid=${steamInfo.userId}&key=${steamInfo.apiKey}`);
+export default async function getGames(session: SessionContextValue): Promise<Array<Game>> {
+    const steamId = (session.data?.user as unknown)?.steam.steamid
+    const response = await fetch(`/api/games?&steamid=${steamId}`);
     return (await response.json()).games;
 }
