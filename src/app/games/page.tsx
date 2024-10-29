@@ -6,6 +6,7 @@ import getGames from "@/services/getGames";
 import Image from "next/image";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
+import {useSession} from "next-auth/react";
 
 function GameCard({game}: { game: Game }): React.ReactElement {
     return (
@@ -28,9 +29,11 @@ export default function GameListPage() {
     const [games, setGames] = useState<Array<Game> | null>(null)
     const router = useRouter();
 
+    const session = useSession()
+    
     useEffect(() => {
-        getGames().then(setGames).catch(() => router.push("/"))
-    }, [router]);
+        getGames(session).then(setGames)
+    }, [router, session]);
 
     if (games == null) {
         return (
