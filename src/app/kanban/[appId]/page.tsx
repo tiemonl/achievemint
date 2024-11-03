@@ -15,7 +15,7 @@ export default function KanbanBoardPage(params: {params: { appId: string}}) {
         getAchievementData({appId: params.params.appId}, session).then((resp) => {
             setAchievements(resp);
         }).catch(() => router.push("/"))
-    }, [params, router]);
+    }, [params, router, session]);
 
     if (achievements == null) {
         return (
