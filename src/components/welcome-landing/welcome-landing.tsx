@@ -1,14 +1,11 @@
 'use client'
 
-import {
-    Button,
-} from "@mui/material";
+import {Button,} from "@mui/material";
 import Link from "next/link";
 import {useSession} from "next-auth/react";
 
 export default function Home() {
     const session = useSession()
-    const sessionData = session.data as unknown as SteamSession
 
     const sessionLayout = <div>
         <ul>
@@ -19,7 +16,7 @@ export default function Home() {
             </li>
 
             <li>
-                Session test: {sessionData?.user?.steam?.steamid}
+                Session test: {session?.data?.user?.steam?.steamid}
             </li>
         </ul>
     </div>

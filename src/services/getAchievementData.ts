@@ -1,8 +1,8 @@
 import {Achievement} from "@/entities/Achievement";
-import {SessionContextValue} from "next-auth/react";
+import {Session} from "next-auth";
 
-export default async function getAchievementData(args: {appId: string}, session: SessionContextValue): Promise<Array<Achievement>> {
-    const steamId = (session.data?.user as unknown)?.steam.steamid
+export default async function getAchievementData(args: {appId: string}, session: Session | null): Promise<Array<Achievement>> {
+    const steamId = session?.user?.steam?.steamid
     const resp = await (await fetch(`/api/achievementData?appid=${args.appId}&steamid=${steamId}&l=en_us`)).json()
 
     return (resp.response1.playerstats.achievements || []).map((entry: {

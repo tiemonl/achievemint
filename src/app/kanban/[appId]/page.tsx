@@ -12,7 +12,7 @@ export default function KanbanBoardPage(params: {params: { appId: string}}) {
     const router = useRouter();
     const session = useSession()
     useEffect(() => {
-        getAchievementData({appId: params.params.appId}, session).then((resp) => {
+        getAchievementData({appId: params.params.appId}, session.data).then((resp) => {
             setAchievements(resp);
         }).catch(() => router.push("/"))
     }, [params, router, session]);
