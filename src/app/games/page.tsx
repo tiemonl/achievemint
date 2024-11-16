@@ -32,7 +32,7 @@ export default function GameListPage() {
     const session = useSession()
     
     useEffect(() => {
-        getGames(session).then(setGames)
+        getGames(session.data).then(setGames)
     }, [router, session]);
 
     if (games == null) {
