@@ -22,8 +22,6 @@ export function getAuthOptions(req?: NextRequest): AuthOptions {
             },
             session({ session, token }) {
                 if ('steam' in token) {
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-expect-error
                     session.user.steam = token.steam
                 }
                 return session
