@@ -1,7 +1,7 @@
-import SteamProvider, { PROVIDER_ID } from 'next-auth-steam'
+import SteamProvider, {PROVIDER_ID} from 'next-auth-steam'
 
-import type { AuthOptions } from 'next-auth'
-import type { NextRequest } from 'next/server'
+import type {AuthOptions, Session} from 'next-auth'
+import type {NextRequest} from 'next/server'
 
 export function getAuthOptions(req?: NextRequest): AuthOptions {
     return {
@@ -22,7 +22,7 @@ export function getAuthOptions(req?: NextRequest): AuthOptions {
             },
             session({ session, token }) {
                 if ('steam' in token) {
-                    session.user.steam = token.steam
+                    session.user.steam = token.steam as Session['user']['steam']
                 }
                 return session
             }
