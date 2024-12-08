@@ -25,11 +25,7 @@ LICENSE
 Thumbs.db
 
 # Environment files
-.env.local
-.env.development
-.env.test
-.env
-.env.production
+.env*
 
 # Ignore npm log files
 npm-debug.log*
